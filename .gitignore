@@ -1,24 +1,435 @@
-# Compiled class file
-*.class
+//p2
+// Train Class
+class Train {
+    private int totalCapacity;  // Total train capacity
+    private int totalPassengers;  // Total number of passengers in the train
+    private ArrayList<Wagon> wagons;  // List of wagons in the train
 
-# Log file
-*.log
+    // Constructor for initializing the train
+    public Train() {
+        totalCapacity = 0;
+        totalPassengers = 0;
+        wagons = new ArrayList<>();
+    }
 
-# BlueJ files
-*.ctxt
+    // Method for adding a wagon to the train
+    public void addWagon(Wagon wagon) {
+        wagons.add(wagon);
+        totalCapacity += wagon.getCapacity();
+        totalPassengers += wagon.getPassengers();
+    }
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+    // Method to get the total capacity of the train
+    public int getTotalCapacity() {
+        return totalCapacity;
+    }
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+    // Method to get the total number of passengers in the train
+    public int getTotalPassengers() {
+        return totalPassengers;
+    }
+}
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+// Locomotive Class
+class Locomotive {
+    // Implementation of the locomotive class
+    // ...
+
+    // In this example, the implementation of the locomotive class is omitted, as it does not participate in calculating the train's capacity and passengers
+}
+
+// Wagon Class
+class Wagon {
+    private int capacity;  // Wagon capacity
+    private int passengers;  // Number of passengers in the wagon
+
+    // Constructor for initializing the wagon
+    public Wagon(int capacity, int passengers) {
+        this.capacity = capacity;
+        this.passengers = passengers;
+    }
+
+    // Method to get the capacity of the wagon
+    public int getCapacity() {
+        return capacity;
+    }
+
+    // Method to get the number of passengers in the wagon
+    public int getPassengers() {
+        return passengers;
+    }
+}
+
+// Example of usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects: trains, locomotives, wagons
+        Train myTrain = new Train();
+        Locomotive locomotive = new Locomotive();  // The necessary implementation of the locomotive may be here
+        Wagon passengerWagon = new Wagon(50, 30);
+        Wagon cargoWagon = new Wagon(100, 0);
+
+        // Adding locomotive and wagons to the train
+        myTrain.addWagon(locomotive);
+        myTrain.addWagon(passengerWagon);
+        myTrain.addWagon(cargoWagon);
+
+        // Outputting the total capacity and number of passengers in the train
+        System.out.println("Total train capacity: " + myTrain.getTotalCapacity());
+        System.out.println("Total number of passengers in the train: " + myTrain.getTotalPassengers());
+    }
+}
+
+//p3
+// Company Class
+class Company {
+    private ArrayList<Employee> employees;  // List of employees in the company
+
+    // Constructor for initializing the company
+    public Company() {
+        employees = new ArrayList<>();
+    }
+
+    // Method for adding an employee to the company
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    // Method to calculate the total cost of the project
+    public double calculateTotalCost() {
+        double totalCost = 0;
+        for (Employee employee : employees) {
+            totalCost += employee.calculateSalary();  // Assuming the salary is a measure of the cost
+        }
+        return totalCost;
+    }
+}
+
+// Employee Class (Base class for all employees)
+class Employee {
+    private String name;  // Employee name
+    private int age;  // Employee age
+
+    // Constructor for initializing an employee
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Method to calculate the salary (Base implementation, to be overridden by subclasses)
+    public double calculateSalary() {
+        return 0;  // Base employee has no salary, subclasses should implement this method
+    }
+}
+
+// Developer Class (Subclass of Employee)
+class Developer extends Employee {
+    private double hourlyRate;  // Hourly rate of the developer
+    private int hoursWorked;  // Number of hours worked by the developer
+
+    // Constructor for initializing a developer
+    public Developer(String name, int age, double hourlyRate, int hoursWorked) {
+        super(name, age);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    // Override method to calculate the salary of the developer
+    @Override
+    public double calculateSalary() {
+        return hourlyRate * hoursWorked;  // Salary = Hourly Rate * Hours Worked
+    }
+}
+
+// Manager Class (Subclass of Employee)
+class Manager extends Employee {
+    private double monthlySalary;  // Monthly salary of the manager
+
+    // Constructor for initializing a manager
+    public Manager(String name, int age, double monthlySalary) {
+        super(name, age);
+        this.monthlySalary = monthlySalary;
+    }
+
+    // Override method to calculate the salary of the manager
+    @Override
+    public double calculateSalary() {
+        return monthlySalary;  // Salary = Monthly Salary
+    }
+}
+
+// Example of usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects: company, employees
+        Company myCompany = new Company();
+        Developer john = new Developer("John", 25, 20.0, 160);
+        Manager alice = new Manager("Alice", 30, 3000.0);
+
+        // Adding employees to the company
+        myCompany.addEmployee(john);
+        myCompany.addEmployee(alice);
+
+        // Calculating and printing the total cost of the project
+        System.out.println("Total cost of the project: $" + myCompany.calculateTotalCost());
+    }
+}
+
+//p4
+// Aquarium Class
+class Aquarium {
+    private ArrayList<AquaticAnimal> aquaticAnimals;  // List of aquatic animals in the aquarium
+    private ArrayList<Accessory> accessories;  // List of accessories in the aquarium
+
+    // Constructor for initializing the aquarium
+    public Aquarium() {
+        aquaticAnimals = new ArrayList<>();  // Initialize the list of aquatic animals
+        accessories = new ArrayList<>();  // Initialize the list of accessories
+    }
+
+    // Method for adding an aquatic animal to the aquarium
+    public void addAquaticAnimal(AquaticAnimal aquaticAnimal) {
+        aquaticAnimals.add(aquaticAnimal);  // Add the specified aquatic animal to the list
+    }
+
+    // Method for adding an accessory to the aquarium
+    public void addAccessory(Accessory accessory) {
+        accessories.add(accessory);  // Add the specified accessory to the list
+    }
+
+    // Method to calculate the total cost of the aquarium, including animals and accessories
+    public double calculateTotalCost() {
+        double totalCost = 0;
+
+        // Calculate the cost of each aquatic animal and add to the total cost
+        for (AquaticAnimal aquaticAnimal : aquaticAnimals) {
+            totalCost += aquaticAnimal.calculateCost();
+        }
+
+        // Calculate the cost of each accessory and add to the total cost
+        for (Accessory accessory : accessories) {
+            totalCost += accessory.getPrice();
+        }
+
+        return totalCost;
+    }
+}
+
+// AquaticAnimal Class (Base class for fish and reptiles)
+abstract class AquaticAnimal {
+    private String name;  // Animal name
+    private double price;  // Animal price
+
+    // Constructor for initializing an aquatic animal
+    public AquaticAnimal(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Abstract method to calculate the cost of the aquatic animal
+    public abstract double calculateCost();
+}
+
+// Fish Class (Subclass of AquaticAnimal)
+class Fish extends AquaticAnimal {
+    private int size;  // Fish size in inches
+
+    // Constructor for initializing a fish
+    public Fish(String name, double price, int size) {
+        super(name, price);
+        this.size = size;
+    }
+
+    // Override method to calculate the cost of the fish based on size
+    @Override
+    public double calculateCost() {
+        return getPrice() * size;  // Cost = Price * Size
+    }
+}
+
+// Reptile Class (Subclass of AquaticAnimal)
+class Reptile extends AquaticAnimal {
+    private String species;  // Reptile species
+
+    // Constructor for initializing a reptile
+    public Reptile(String name, double price, String species) {
+        super(name, price);
+        this.species = species;
+    }
+
+    // Override method to calculate the cost of the reptile (assume a fixed cost for reptiles)
+    @Override
+    public double calculateCost() {
+        return getPrice();  // Cost for reptiles is their fixed price
+    }
+}
+
+// Accessory Class
+class Accessory {
+    private String name;  // Accessory name
+    private double price;  // Accessory price
+
+    // Constructor for initializing an accessory
+    public Accessory(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Method to get the price of the accessory
+    public double getPrice() {
+        return price;
+    }
+}
+
+// Example of usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects: aquarium, aquatic animals, accessories
+        Aquarium myAquarium = new Aquarium();
+        Fish goldfish = new Fish("Goldfish", 5.0, 4);
+        Reptile turtle = new Reptile("Turtle", 20.0, "Terrapene carolina");
+        Accessory castleDecoration = new Accessory("Castle Decoration", 8.0);
+        Accessory plantDecoration = new Accessory("Plant Decoration", 3.0);
+
+        // Adding aquatic animals and accessories to the aquarium
+        myAquarium.addAquaticAnimal(goldfish);
+        myAquarium.addAquaticAnimal(turtle);
+        myAquarium.addAccessory(castleDecoration);
+        myAquarium.addAccessory(plantDecoration);
+
+        // Calculating and printing the total cost of the aquarium
+        System.out.println("Total cost of the aquarium: $" + myAquarium.calculateTotalCost());
+    }
+}
+
+//p5
+// Stone Class (Base class for precious and semi-precious stones)
+// Represents a basic template for stones, including their name, weight, and price per carat.
+abstract class Stone {
+    private String name;  // Stone name
+    private double weight;  // Stone weight in carats
+    private double pricePerCarat;  // Price per carat for the stone
+
+    // Constructor for initializing a stone
+    public Stone(String name, double weight, double pricePerCarat) {
+        this.name = name;
+        this.weight = weight;
+        this.pricePerCarat = pricePerCarat;
+    }
+
+    // Method to calculate the total cost of the stone
+    // Calculates the cost of the stone based on its weight and price per carat.
+    public double calculateCost() {
+        return weight * pricePerCarat;  // Cost = Weight * Price per carat
+    }
+
+    // Getter method for the stone name
+    public String getName() {
+        return name;
+    }
+
+    // Getter method for the stone weight
+    public double getWeight() {
+        return weight;
+    }
+
+    // Getter method for the price per carat of the stone
+    public double getPricePerCarat() {
+        return pricePerCarat;
+    }
+}
+
+// PreciousStone Class (Subclass of Stone)
+// Represents a specialized precious stone with an additional gem type.
+class PreciousStone extends Stone {
+    private String gemType;  // Type of precious stone (e.g., diamond, emerald)
+
+    // Constructor for initializing a precious stone
+    public PreciousStone(String name, double weight, double pricePerCarat, String gemType) {
+        super(name, weight, pricePerCarat);
+        this.gemType = gemType;
+    }
+
+    // Override method to calculate the total cost of the precious stone (considering a premium for precious stones)
+    // Overrides the base class method to add a premium for precious stones.
+    @Override
+    public double calculateCost() {
+        return super.calculateCost() * 1.5;  // Cost with a 50% premium for precious stones
+    }
+}
+
+// SemiPreciousStone Class (Subclass of Stone)
+// Represents a specialized semi-precious stone with an additional mineral type.
+class SemiPreciousStone extends Stone {
+    private String mineral;  // Mineral type of semi-precious stone (e.g., amethyst, topaz)
+
+    // Constructor for initializing a semi-precious stone
+    public SemiPreciousStone(String name, double weight, double pricePerCarat, String mineral) {
+        super(name, weight, pricePerCarat);
+        this.mineral = mineral;
+    }
+}
+
+// Necklace Class
+// Represents a collection of stones forming a necklace.
+class Necklace {
+    private ArrayList<Stone> stones;  // List of stones in the necklace
+
+    // Constructor for initializing the necklace
+    // Initializes an empty list of stones for the necklace.
+    public Necklace() {
+        stones = new ArrayList<>();  // Initialize the list of stones
+    }
+
+    // Method for adding a stone to the necklace
+    // Adds a specified stone to the list of stones in the necklace.
+    public void addStone(Stone stone) {
+        stones.add(stone);  // Add the specified stone to the list
+    }
+
+    // Method to calculate the total weight of the necklace (in carats)
+    // Calculates the total weight of all stones in the necklace.
+    public double calculateTotalWeight() {
+        double totalWeight = 0;
+
+        // Calculate the weight of each stone and add to the total weight
+        for (Stone stone : stones) {
+            totalWeight += stone.getWeight();
+        }
+
+        return totalWeight;
+    }
+
+    // Method to calculate the total cost of the necklace (in kzt)
+    // Calculates the total cost of all stones in the necklace.
+    public double calculateTotalCost() {
+        double totalCost = 0;
+
+        // Calculate the cost of each stone and add to the total cost
+        for (Stone stone : stones) {
+            totalCost += stone.calculateCost();
+        }
+
+        return totalCost;
+    }
+}
+
+// Example of usage
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects: necklace, stones
+        Necklace myNecklace = new Necklace();
+        PreciousStone diamond = new PreciousStone("Diamond", 2.5, 20000.0, "Diamond");
+        SemiPreciousStone amethyst = new SemiPreciousStone("Amethyst", 1.8, 5000.0, "Quartz");
+        SemiPreciousStone topaz = new SemiPreciousStone("Topaz", 2.0, 3000.0, "Aluminum silicate");
+
+        // Adding stones to the necklace
+        myNecklace.addStone(diamond);
+        myNecklace.addStone(amethyst);
+        myNecklace.addStone(topaz);
+
+        // Calculating and printing the total weight and cost of the necklace
+        System.out.println("Total weight of the necklace: " + myNecklace.calculateTotalWeight() + " carats");
+        System.out.println("Total cost of the necklace: " + myNecklace.calculateTotalCost() + " kzt");
+    }
+}
