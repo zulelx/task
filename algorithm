@@ -1,1 +1,144 @@
+# Function to calculate the factorial of a number
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
 
+# Input a number from the user
+number = int(input("Enter a number to calculate its factorial: "))
+
+# Display the factorial of the input number
+print("The factorial of", number, "is", factorial(number))
+
+
+
+# Function to recursively sum all digits in a number
+def sum_of_digits(n):
+    if n < 10:
+        return n
+    else:
+        return n % 10 + sum_of_digits(n // 10)
+
+# Input an integer from the user
+number = int(input("Enter an integer to calculate the sum of its digits: "))
+
+# Display the sum of digits of the input number
+print("The sum of digits in the number", number, "is", sum_of_digits(number))
+
+
+
+# Function to recursively calculate the nth Fibonacci number
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Input the position in Fibonacci sequence from the user
+position = int(input("Enter the position to calculate the Fibonacci number: "))
+
+# Display the Fibonacci number at the given position
+print("The Fibonacci number at position", position, "is", fibonacci(position))
+
+
+
+# Sample class representing a tree node
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+# Function for recursive tree traversal
+def traverse_tree(node):
+    if node:
+        print(node.value)  # Perform action on the current node
+        for child in node.children:
+            traverse_tree(child)  # Recursively traverse each child
+
+# Example usage
+root = TreeNode(1)
+root.children = [TreeNode(2), TreeNode(3)]
+root.children[0].children = [TreeNode(4), TreeNode(5)]
+
+# Perform tree traversal starting from the root
+print("Tree Traversal:")
+traverse_tree(root)
+
+
+
+# Function to perform recursive Quick Sort on an array
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        less = [x for x in arr[1:] if x <= pivot]
+        greater = [x for x in arr[1:] if x > pivot]
+        return quick_sort(less) + [pivot] + quick_sort(greater)
+
+# Example usage
+input_array = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+sorted_array = quick_sort(input_array)
+
+# Display the sorted array
+print("Quick Sort Result:")
+print(sorted_array)
+
+
+
+# Sample graph represented as an adjacency list
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+# Function to find all paths between two vertices in a graph
+def find_all_paths(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return [path]
+    if start not in graph:
+        return []
+    paths = []
+    for node in graph[start]:
+        if node not in path:
+            new_paths = find_all_paths(graph, node, end, path)
+            for p in new_paths:
+                paths.append(p)
+    return paths
+
+# Example usage
+start_vertex = 'A'
+end_vertex = 'F'
+all_paths = find_all_paths(graph, start_vertex, end_vertex)
+
+# Display all paths from start to end in the graph
+print("All Paths from", start_vertex, "to", end_vertex, "in the Graph:")
+for path in all_paths:
+    print(" -> ".join(path))
+
+
+
+# Function to recursively generate all permutations of elements in a list
+def generate_permutations(elements):
+    if len(elements) <= 1:
+        return [elements]
+    all_permutations = []
+    for perm in generate_permutations(elements[1:]):
+        for i in range(len(elements)):
+            all_permutations.append(perm[:i] + elements[0:1] + perm[i:])
+    return all_permutations
+
+# Example usage
+input_list = [1, 2, 3]
+all_permutations = generate_permutations(input_list)
+
+# Display all permutations of the input list
+print("All Permutations:")
+for perm in all_permutations:
+    print(perm)
