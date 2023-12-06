@@ -1,4 +1,4 @@
-# Function to calculate the factorial of a number
+#1 Function to calculate the factorial of a number
 def factorial(n):
     if n == 0:
         return 1
@@ -13,7 +13,7 @@ print("The factorial of", number, "is", factorial(number))
 
 
 
-# Function to recursively sum all digits in a number
+#2 Function to recursively sum all digits in a number
 def sum_of_digits(n):
     if n < 10:
         return n
@@ -28,7 +28,7 @@ print("The sum of digits in the number", number, "is", sum_of_digits(number))
 
 
 
-# Function to recursively calculate the nth Fibonacci number
+#3 Function to recursively calculate the nth Fibonacci number
 def fibonacci(n):
     if n <= 1:
         return n
@@ -43,7 +43,7 @@ print("The Fibonacci number at position", position, "is", fibonacci(position))
 
 
 
-# Sample class representing a tree node
+#4 Sample class representing a tree node
 class TreeNode:
     def __init__(self, value):
         self.value = value
@@ -67,7 +67,7 @@ traverse_tree(root)
 
 
 
-# Function to perform recursive Quick Sort on an array
+#5 Function to perform recursive Quick Sort on an array
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -87,7 +87,7 @@ print(sorted_array)
 
 
 
-# Sample graph represented as an adjacency list
+#6 Sample graph represented as an adjacency list
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
@@ -124,7 +124,7 @@ for path in all_paths:
 
 
 
-# Function to recursively generate all permutations of elements in a list
+#7 Function to recursively generate all permutations of elements in a list
 def generate_permutations(elements):
     if len(elements) <= 1:
         return [elements]
